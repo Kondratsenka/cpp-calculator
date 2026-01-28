@@ -1,103 +1,68 @@
-#include <iostream>
 #include "calculator.h"
+#include <iostream>
 #include <string>
 #include <cmath>
 #include <limits>
-using namespace std;
 
-bool ReadNumber(Number& result){
-    if(!(cin >> result)){
-        cerr<<"Error: Numeric operand expected"<<endl;
-        return false; 
-    }
-    return true; 
+void Calculator::Set(Number n){
+    current_number = n;
 }
 
-bool RunCalculatorCycle(){
-    string command;
-    Number current_number = 0; 
-    Number saved_number = 0; 
-    bool number_is_saved = false;
+Number Calculator::GetNumber() const{
 
-    if(!(ReadNumber(current_number))){
-        return false;
+    return current_number;
+}
+
+void Calculator::Add(Number n){
+    current_number += n;
+}
+
+void Calculator::Sub(Number n){
+    current_number -= n;
+}
+void Calculator::Div(Number n) {
+    if (n == 0) {
+        // устанавливаем infinity в зависимости от знака делителя
+        if (std::signbit(n)) {
+            current_number = -std::numeric_limits<double>::infinity();
+        } else {
+            current_number = std::numeric_limits<double>::infinity();
+        }
+    } else {
+        current_number /= n;
     }
-    while (cin>>command){
-        if(command == "s"){
-            saved_number = current_number;
-            number_is_saved = true;
-        }
-        else if(command == "l"){
-            if(number_is_saved){
-                current_number = saved_number;
-            }
-            else{
-                cerr<<"Error: Memory is empty"<<endl;
-                return false;
-            }
-        }
-        else if(command == "+"){
-            Number user_number = 0; // число введённое пользователем
-            if(!(ReadNumber(user_number))){ 
-                return false;
-            }
-            current_number += user_number;
-        }
-        else if(command == "-"){
-            Number user_number = 0;
-            if(!(ReadNumber(user_number))){
-                return false;
-            }
-            current_number -= user_number;
-        }
-        else if(command == "*"){
-            Number user_number = 0;
-            if(!(ReadNumber(user_number))){
-                return false;
-            }
-            current_number *= user_number;
-        }
-        else if(command == "/"){
-            Number user_number = 0;
-            if(!(ReadNumber(user_number))){
-                return false;
-            }
-            if(user_number == 0){
-                current_number = numeric_limits<Number>::infinity();
-                continue;
-                cout<<"inf"<<endl;
-            }
-            else{
-                current_number /= user_number;
-            } 
-        }
-        else if(command == ":"){
-            Number user_number = 0;
-            if(!(ReadNumber(user_number))){       
-            return false;
-            }
-            current_number = user_number;
-        }
-        else if(command == "c"){
-            current_number = 0;
-        }
-        else if(command == "**"){
-            Number user_number = 0;
-            if(!(ReadNumber(user_number))){
-                return false;
-            }
-            current_number = pow(current_number, user_number);
-        }
-        else if(command == "="){
-            cout<<current_number<<endl;
-        }
-        else if(command == "q"){
-            break;
-        }
-        else{
-            cerr<<"Error: Unknown token "<<command<<endl;
-            return false;
-        }
+}
+
+void Calculator::Mul(Number n){
+    current_number *= n;
+}
+
+void Calculator::Pow(Number n){
+    current_number = pow(current_number, n);
+}
+
+
+void Calculator::Save()
+{
+    memory_number = current_number;
+    flag = true;
+}
+
+
+void Calculator::Load()
+{
+    if (flag) {
+        current_number = memory_number;
     }
-    return true;
+
+}
+
+// Проверяем, есть ли значение в памяти
+bool Calculator::HasMem() const
+{
+    return flag;
+}
+
+std::string Calculator::GetNumberRepr() {
+    return std::to_string(current_number);
 }
