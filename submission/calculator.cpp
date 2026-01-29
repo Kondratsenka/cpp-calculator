@@ -1,5 +1,3 @@
-// Разместите тут реализацию методов класса Calculator из вашего решения
-// задания темы «Классы».
 #include "calculator.h"
 #include <iostream>
 #include <string>
