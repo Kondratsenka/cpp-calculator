@@ -60,19 +60,18 @@ private:
     Ui::MainWindow* ui;
 
     Calculator calculator_;
-
-    QString input_number_;                 // храним число как строку, которое вводит пользователь с помощью кнопок
-    void SetText(const QString& text);    // сохранит результат в input_number_ и поместит его в l_result.
-    void AddText(const QString& suffix); // допишет к input_number_ нужный текст и вызовет SetText
-    Number active_number_ = 0.0;        // храним текущее активное число в калькуляторе
-    Operation current_operation_ = Operation::NO_OPERATION;
-    void SetOperation(Operation op);  // метод вызывается при нажатии всех кнопок операций (+, -, /, *, ^)
+    Number active_number_ = 0.0;           // храним текущее активное число в калькуляторе
+    Operation current_operation_ = Operation::NO_OPERATION;  // никаких действий не выполняется
+    void SetText(const QString& text);   // сохранит результат в input_number_ и поместит его в l_result.
+    void AddText(const QString& suffix);// допишет к input_number_ нужный текст и вызовет SetText
+    void SetOperation(Operation op);   // метод вызывается при нажатии всех кнопок операций (+, -, /, *, ^)
     void PerformOperation(double second_num);  // метод отвечает за выполнение действий (+, -, /, *, ^)
+    QString input_number_;           // храним число как строку, которое вводит пользователь с помощью кнопок
     QString first_number_str_;      // храним строковую копию первого числа для l_formula
     QString second_number_str_;    // храним строковую копию второго числа для l_formula
-    double first_number_ = 0.0;   // числовое знач. первого числа (расчеты)
     QString NormalizeNumber(const QString &text); // метод нармализует числа
-    QString RemoveTrailingZeroes(const QString &text); // метод удаляет все ненужные 0 из строки и делает числа корректными
+    QString RemoveTrailingZeroes(const QString &text);  // метод удаляет все ненужные 0 из строки и делает числа корректными
+    double first_number_ = 0.0;// числовое знач. первого числа (расчеты)
     double memory = 0.0;      // храним числа в памяти
     bool del = true;         // флаг блокировки удаления последних цифр после нажатия кнопки (=)
     bool in_memory = false; //  устанавливаем изначально флаг о том, что число не в памяти !>
