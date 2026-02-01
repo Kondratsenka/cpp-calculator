@@ -202,7 +202,7 @@ void MainWindow::on_btn_point_clicked() {  // метод кнопки точки
         return;
     }
     if(new_input) {               // если новый ввод
-        SetText("0.");           // устанавливаем начальное знач. строки ввода  0.
+        SetText("0.");           // устанавливаем начальное знач. строки ввода ноль и точка -> (0.)
         new_input = false;      // меняем состояние(значение) ввода нового числа на false
         return;
     }
@@ -210,10 +210,13 @@ void MainWindow::on_btn_point_clicked() {  // метод кнопки точки
     AddText(".");                // добавляем точку (.)
 }
 
-void MainWindow::on_btn_plus_minus_clicked() {        // метод кнопки плюс-минус (+,-)
+void MainWindow::on_btn_plus_minus_clicked() {        // метод кнопки плюс-минус (+, -)
 
     if (!std::isfinite(active_number_)) {           // если nan и inf, кнопка (+ -) ничего не далает
         return;
+    }
+    if (input_number_ == "0" ) {                  // если в строке ввода число 0
+        return;                                  // ничего не делаем
     }
 
     if (input_number_.startsWith('-')) {        // если число изначально с минусом
