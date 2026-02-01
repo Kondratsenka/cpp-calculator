@@ -56,7 +56,6 @@ private slots:
 
     void on_btn_mClear_clicked();
 
-
 private:
     Ui::MainWindow* ui;
 
@@ -69,14 +68,13 @@ private:
     Operation current_operation_ = Operation::NO_OPERATION;
     void SetOperation(Operation op);  // метод вызывается при нажатии всех кнопок операций (+, -, /, *, ^)
     void PerformOperation(double second_num);  // метод отвечает за выполнение действий (+, -, /, *, ^)
-    bool del = true;                // флаг блокировки удаления последних цифр после нажатия кнопки (=)
-    QString first_number_str_;     // храним строковую копию первого числа для l_formula
-    QString second_number_str_;   // храним строковую копию второго числа для l_formula
-    double first_number_ = 0.0;  // числовое знач. первого числа (расчеты)
+    QString first_number_str_;      // храним строковую копию первого числа для l_formula
+    QString second_number_str_;    // храним строковую копию второго числа для l_formula
+    double first_number_ = 0.0;   // числовое знач. первого числа (расчеты)
     QString NormalizeNumber(const QString &text); // метод нармализует числа
     QString RemoveTrailingZeroes(const QString &text); // метод удаляет все ненужные 0 из строки и делает числа корректными
     double memory = 0.0;      // храним числа в памяти
-    bool in_memory = false;  //  устанавливаем изначально флаг о том, что число не в памяти !>
-    bool new_input = true;  // флаг ввода нового числа !>
-
+    bool del = true;         // флаг блокировки удаления последних цифр после нажатия кнопки (=)
+    bool in_memory = false; //  устанавливаем изначально флаг о том, что число не в памяти !>
+    bool new_input = true; // флаг ввода нового числа !>
 };
