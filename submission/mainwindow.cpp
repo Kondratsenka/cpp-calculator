@@ -296,7 +296,7 @@ void MainWindow::on_btn_equals_clicked() {                 //  метод кно
     new_input = true;                                    // указываем, что начался новый ввод
 }
 
-void MainWindow::on_btn_mStore_clicked() {        // метод сохраненяет текущее число в память!
+void MainWindow::on_btn_mStore_clicked() {        // метод сохраняет текущее число в память!
 
     if (!std::isfinite(active_number_)) {
         return;
