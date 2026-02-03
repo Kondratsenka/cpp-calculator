@@ -28,7 +28,7 @@ public:
 
 private slots:
 
-    void numbers_clicked(); // общий обработчик для всех цифр
+    void numbers_clicked(); // общий обработ для всех цифр
 
     void on_btn_point_clicked();
 
