@@ -4,6 +4,7 @@
 #include <cmath>
 
 
+
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);                 // связываем все элементы из ui файла с окном
@@ -11,7 +12,7 @@ MainWindow::MainWindow(QWidget* parent)
     ui->l_memory->setText("");       //  очищаем поле памяти, убираем (M)
     ui->l_formula->setText("");     //  очищаем поле в l_formula
 
-    // указ на обьект       сигнал при нажат.  ук.на класс  метод в классе вызывается при нажатии на люб. кнопку
+    //указ. на обьект       сигнал при нажат.  ук.на класс  метод в классе вызывается при нажатии на люб. кнопку
     connect(ui->btn_zero,   &QPushButton::clicked, this, &MainWindow::numbers_clicked);
     connect(ui->btn_one,    &QPushButton::clicked, this, &MainWindow::numbers_clicked);
     connect(ui->btn_two,    &QPushButton::clicked, this, &MainWindow::numbers_clicked);
