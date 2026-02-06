@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
  QApplication::setStyle("Fusion");
 
     QPalette darkPalette;
+    // цветавая гамма калькулятора
     darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));                 // фон главного окна
     darkPalette.setColor(QPalette::WindowText, Qt::white);                     // белый текст на фоне окна 
     darkPalette.setColor(QPalette::WindowText, Qt::white);                    // белый текст на фоне окна 
