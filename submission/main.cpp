@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
  QApplication::setStyle("Fusion");                                                  // утанавливаем стиль Fusion
-    QPalette darkPalette;                                                         // тёмная тема
+    QPalette darkPalette;                                                          // тёмная тема
     // цветовая гамма калькулятора
     darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));                 // фон главного окна
     darkPalette.setColor(QPalette::WindowText, Qt::white);                     // белый текст на фоне окна 
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::HighlightedText, Qt::black);
 
-    qApp->setPalette(darkPalette); 
+    qApp->setPalette(darkPalette);                                     // применяем палитру (черный цвет) ко всему приложению 
     
     MainWindow w;
     w.show();
