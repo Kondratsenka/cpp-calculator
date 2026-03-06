@@ -25,8 +25,8 @@ MainWindow::MainWindow(QWidget* parent)
    
 }
 
-MainWindow::~MainWindow() {    // деструктор
-    delete ui;                 // освобождаем память
+MainWindow::~MainWindow() {    
+    delete ui;             
 }
 
 QString OpToString(Operation op) {                      // метод корректно отображает математические операции в интерфейсе калькулятора!
