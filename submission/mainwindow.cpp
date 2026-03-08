@@ -40,7 +40,7 @@ QString OpToString(Operation op) {                      // метод корре
     case Operation::POWER: return "^";           // если операция ^, возврат символ "^"
 
     }
-    return "";                                 // защита от (undefined behavior)
+    return "";                             
 }
 
 void MainWindow::PerformOperation(double second_num) {       // метод отвечает исключительно за выполнение матем. операции!
