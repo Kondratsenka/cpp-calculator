@@ -72,7 +72,7 @@ void MainWindow::PerformOperation(double second_num) {       // метод от�
             ui->l_result->setText("Error"); // выводим сообщение об ошибке
             current_operation_ = Operation::NO_OPERATION; // никаких действий не выполняется
             return;
-        }                                    // иначе
+        }                                    
         calculator_.Set(first_number_);     // устанавливаем первое число
         calculator_.Div(second_num);       // добавляем делитель
         result = calculator_.GetNumber(); // находим частное чисел и сохран. в переменную result
