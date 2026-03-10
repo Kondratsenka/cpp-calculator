@@ -96,7 +96,7 @@ QString MainWindow::RemoveTrailingZeroes(const QString &text) {    // метод
         if (text[i] != '0') {                       // ищем первый символ, который не '0'.
             return text.mid(i);                    //возврат. подстроки
         }
-    }                                            // иначе
+    }                                           
     return "";                                  // возврат. пустой строки
 }
 
