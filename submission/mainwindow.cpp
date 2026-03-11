@@ -97,7 +97,7 @@ QString MainWindow::RemoveTrailingZeroes(const QString &text) {    // метод
             return text.mid(i);                    //возврат. подстроки
         }
     }                                           
-    return "";                                  // возврат. пустой строки
+    return "";                                  
 }
 
 QString MainWindow::NormalizeNumber(const QString &text) {     // метод нармализует числа!
