@@ -214,7 +214,7 @@ void MainWindow::on_btn_point_clicked() {  // метод кнопки точки
     }
 
 
-    AddText(".");                // добавляем точку (.)
+    AddText(".");               
 }
 
 void MainWindow::on_btn_plus_minus_clicked() {        // метод кнопки плюс-минус (+,-)
@@ -230,7 +230,7 @@ void MainWindow::on_btn_plus_minus_clicked() {        // метод кнопки
 
     if(input_number_ == "0") {               // если в строке ввода число 0
 
-        return;                            // ничего не делаем
+        return;                           
     }
 
     if (input_number_.startsWith('-')) {        // если число изначально с минусом
@@ -277,12 +277,12 @@ void MainWindow::on_btn_plus_clicked() {              // (+)
     SetOperation(Operation::ADDITION);
 }
 
-void MainWindow::on_btn_equals_clicked() {                 //  метод кнопки равно (=)
+void MainWindow::on_btn_equals_clicked() {                       //  метод кнопки равно (=)
 
-    if (current_operation_ == Operation::NO_OPERATION) { // если нет операции
+    if (current_operation_ == Operation::NO_OPERATION) {       // если нет операции
 
-        SetText(QString::number(active_number_));      // преобразуем число в строку и обнавляем l_result
-        del = false;                                  // запрет удаления цифр после нажатия на кнопку
+        SetText(QString::number(active_number_));            // преобразуем число в строку и обнавляем l_result
+        del = false;                                        // запрет удаления цифр после нажатия на кнопку
         return;
     }
 
