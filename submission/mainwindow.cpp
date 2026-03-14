@@ -331,7 +331,7 @@ void MainWindow::on_btn_mStore_clicked() {         // метод сохране�
 void MainWindow::on_btn_mRecall_clicked() {                           // метод выводит в l_result сохраненное число из памяти MS!
 
     if (!in_memory) {                                               // если в памяти ничего нет
-        return;                                                    // ничего не делаем
+        return;                                                    
     }
     QString mem_str = NormalizeNumber(QString::number(memory));  // преобразуем число из памяти в строку
 
