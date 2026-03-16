@@ -17,7 +17,7 @@ public:
     void Save();                           // Сохраняет current_number в память
     void Load();                           // Загружает память в current_number
     bool HasMem() const;                   // true, если память заполнена
-    std::string GetNumberRepr();     // std::to_string(current_number)
+    std::string GetNumberRepr();     
 
 
 private:
