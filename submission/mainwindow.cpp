@@ -29,7 +29,7 @@ MainWindow::~MainWindow() {
     delete ui;             
 }
 
-QString OpToString(Operation op) {                      // метод корректно отображает математические операции в интерфейсе калькулятора!
+QString OpToString(Operation op) {                       // метод корректно отображает математические операции в интерфейсе калькулятора!
 
     switch(op) {
     case Operation::NO_OPERATION: return "";          // если нет операции, возврат пустой строки
