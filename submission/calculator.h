@@ -1,29 +1,110 @@
 #pragma once
+
 #include <string>
+#include <optional>
+#include <cmath>
+#include "rational.h"
+#include "pow.h"
 
-using Number = double;
+    using Error = std::string;
 
+// Реализация шаблонного калькулятора.
+template <typename Number>
 class Calculator {
-public:
-    Calculator() : current_number(0.0), memory_number(0.0), flag(false) {}
-
-    void Set(Number n);                    // Заменяет текущее число на n
-    Number GetNumber() const;              // Возвращает текущее число
-    void Add(Number n);                    // current_number += n
-    void Sub(Number n);                    // current_number -= n
-    void Div(Number n);                    // current_number /= n
-    void Mul(Number n);                    // current_number *= n
-    void Pow(Number n);                    // current_number = pow(current_number, n)
-    void Save();                           // Сохраняет current_number в память
-    void Load();                           // Загружает память в current_number
-    bool HasMem() const;                   // true, если память заполнена
-    std::string GetNumberRepr();     
-
-
 private:
+    Number number_; // тек число
+    std::optional<Number> mem_; // память
 
-    Number current_number; // текущее число
-    Number memory_number; // число в памяти
-    bool flag = false;  // флаг заполненности памяти
+public:
+    Calculator(Number init = {}) : number_(init) {}
+    std::optional<Error> Add(Number r) {
+        number_ += r;
+        return std::nullopt;
 
+    }
+    std::optional<Error> Sub(Number r) {
+        number_ -= r;
+        return std::nullopt;
+    }
+
+    std::optional<Error> Mul(Number r) {
+        number_ *= r;
+        return std::nullopt;
+
+    }
+
+    std::optional<Error> Div(Number r) {
+        if constexpr (std::is_integral_v<Number> || std::is_same_v<Number, Rational>) {
+            if(r == Number(0)) {
+                return "Division by zero";
+            }
+        }
+
+        number_ /= r;
+        return  std::nullopt;
+    }
+
+    std::optional<Error> Pow(Number r) {
+        if(number_ == Number(0) && r == Number(0)) {
+            return "Zero power to zero";
+
+        }
+
+        if constexpr (std::is_integral_v<Number>) {
+            if(r < Number(0)) {
+                return "Integer negative power";
+            }
+
+            number_ = IntegerPow(number_, r);
+        }
+        else if constexpr (std::is_same_v<Number, Rational>) {
+            if(r.GetDenominator() != 1) {
+                return "Fractional power is not supported";
+            }
+            number_ = Pow(number_, r);
+
+        }
+        else {
+            number_ = std::pow(static_cast<double>(number_),
+                               static_cast<double>(r));
+        }
+
+        return std::nullopt;
+    }
+
+
+    void Save() {
+        mem_ = number_;
+    }
+
+    void Load() {
+        if(mem_.has_value()) {
+            number_ = mem_.value();
+        }
+    }
+
+    void ClearMemory() {
+        mem_.reset();
+    }
+
+    bool GetHasMem() const {
+        return mem_.has_value();
+    }
+
+    void Set(Number n) {
+        number_ = n;
+    }
+
+    void Negate(Number n) {
+        Set(n);
+        Mul(-1);
+    }
+
+    Number GetNumber() const {
+        return number_;
+    }
+
+    std::string GetNumberRepr() const {
+        return std::to_string(number_);
+    }
 };
