@@ -8,7 +8,6 @@
 
     using Error = std::string;
 
-// Реализация шаблонного калькулятора.
 template <typename Number>
 class Calculator {
 private:
@@ -71,7 +70,6 @@ public:
 
         return std::nullopt;
     }
-
 
     void Save() {
         mem_ = number_;
