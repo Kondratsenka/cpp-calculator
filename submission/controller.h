@@ -264,4 +264,3 @@ private:
     std::string formula_;
     std::string mem_text_;
 };
-
