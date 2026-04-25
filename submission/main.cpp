@@ -1,32 +1,46 @@
 #include "mainwindow.h"
 
+#include "controller.h"
+
 #include <QApplication>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+    Controller<double> double_controller;
+    Controller<int> int_controller;
+    Controller<float> float_controller;
+    Controller<size_t> size_t_controller;
+    Controller<int64_t> int64_t_controller;
+    Controller<std::uint8_t> byte_controller;
+    Controller<Rational> rational_controller;
     QApplication a(argc, argv);
-
- QApplication::setStyle("Fusion");                                                  // утанавливаем стиль Fusion
-    QPalette darkPalette;                                                          // создаём объект палитры для тёмной темы
-    
-    // цветовая гамма калькулятора
-    darkPalette.setColor(QPalette::Window, QColor(53, 53, 53));                 // фон главного окна
-    darkPalette.setColor(QPalette::WindowText, Qt::white);                     // белый текст на фоне окна 
-    darkPalette.setColor(QPalette::WindowText, Qt::white);                    // белый текст на фоне окна 
-    darkPalette.setColor(QPalette::Base, QColor(25, 25, 25));                 
-    darkPalette.setColor(QPalette::AlternateBase, QColor(53, 53, 53));
-    darkPalette.setColor(QPalette::ToolTipBase, Qt::white);
-    darkPalette.setColor(QPalette::ToolTipText, Qt::white);
-    darkPalette.setColor(QPalette::Text, Qt::white);
-    darkPalette.setColor(QPalette::Button, QColor(53, 53, 53));       
-    darkPalette.setColor(QPalette::ButtonText, Qt::white);          
-    darkPalette.setColor(QPalette::BrightText, Qt::red);
-    darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
-    darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    darkPalette.setColor(QPalette::HighlightedText, Qt::black);
-
-    qApp->setPalette(darkPalette);                                     // применяем палитру (черный цвет) ко всему приложению 
-    
     MainWindow w;
+    w.SetControllerCallback([&](ControllerType controller) {
+        switch(controller) {
+        case ControllerType::DOUBLE:
+            double_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::FLOAT:
+            float_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::INT:
+            int_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::INT64_T:
+            int64_t_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::SIZE_T:
+            size_t_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::UINT8_T:
+            byte_controller.BindWithMainWindow(&w);
+            break;
+        case ControllerType::RATIONAL:
+            rational_controller.BindWithMainWindow(&w);
+            break;
+        }
+    });
+    double_controller.BindWithMainWindow(&w);
     w.show();
     return a.exec();
 }
