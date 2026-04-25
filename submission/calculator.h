@@ -8,6 +8,7 @@
 
     using Error = std::string;
 
+// Реализация шаблонного калькулятора.
 template <typename Number>
 class Calculator {
 private:
@@ -54,13 +55,13 @@ public:
                 return "Integer negative power";
             }
 
-            number_ = IntegerPow(number_, r);
+            number_ = ::IntegerPow(number_, r);
         }
         else if constexpr (std::is_same_v<Number, Rational>) {
             if(r.GetDenominator() != 1) {
                 return "Fractional power is not supported";
             }
-            number_ = Pow(number_, r);
+            number_ = ::Pow(number_, r);
 
         }
         else {
@@ -70,6 +71,7 @@ public:
 
         return std::nullopt;
     }
+
 
     void Save() {
         mem_ = number_;
