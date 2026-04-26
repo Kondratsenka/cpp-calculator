@@ -109,7 +109,7 @@ public:
     Rational& operator=(const Rational& r2) = default;        // операция присваивания дробей (=)
 
     Rational operator+() const{                             // унарный оператор (++)
-        return{numerator_, denominator_};
+        return *this;
     }
 
     Rational operator-() const{                             // унарный оператор (--)
