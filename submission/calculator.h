@@ -6,9 +6,8 @@
 #include "rational.h"
 #include "pow.h"
 
-    using Error = std::string;
+using Error = std::string;
 
-// Реализация шаблонного калькулятора.
 template <typename Number>
 class Calculator {
 private:
