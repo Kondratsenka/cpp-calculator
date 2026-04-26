@@ -19,8 +19,8 @@ public:
     std::optional<Error> Add(Number r) {
         number_ += r;
         return std::nullopt;
-
     }
+
     std::optional<Error> Sub(Number r) {
         number_ -= r;
         return std::nullopt;
@@ -29,7 +29,6 @@ public:
     std::optional<Error> Mul(Number r) {
         number_ *= r;
         return std::nullopt;
-
     }
 
     std::optional<Error> Div(Number r) {
@@ -46,7 +45,6 @@ public:
     std::optional<Error> Pow(Number r) {
         if(number_ == Number(0) && r == Number(0)) {
             return "Zero power to zero";
-
         }
 
         if constexpr (std::is_integral_v<Number>) {
@@ -61,7 +59,6 @@ public:
                 return "Fractional power is not supported";
             }
             number_ = ::Pow(number_, r);
-
         }
         else {
             number_ = std::pow(static_cast<double>(number_),
@@ -70,7 +67,6 @@ public:
 
         return std::nullopt;
     }
-
 
     void Save() {
         mem_ = number_;
