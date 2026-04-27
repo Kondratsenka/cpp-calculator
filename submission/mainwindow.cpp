@@ -68,7 +68,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tb_extra, &QPushButton::clicked, this, &MainWindow::onPointClicked);
     connect(ui->cmb_controller, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &MainWindow::onControllerTypeChanged);
-
 }
 
 MainWindow::~MainWindow()
